@@ -1,0 +1,16 @@
+# Example 3: Find all features that touch the union of feature `my:A'
+# and feature `my:D', where computations are based on
+# `my:hasExactGeometry'.
+
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix my: <http://example.org/ApplicationSchema#>
+select ?f {
+  ?f my:hasExactGeometry ?fGeom .
+  ?fGeom geo:asWKT ?fWKT .
+  my:A my:hasExactGeometry ?aGeom .
+  ?aGeom geo:asWKT ?aWKT .
+  ?my:D my:hasExactGeometry ?dGeom .
+  ?dGeom geo:asWKT ?dWKT .
+  filter(geof:sfTouches(?fWKT, geof:union(?aWKT, ?dWKT)))
+}

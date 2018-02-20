@@ -1,0 +1,12 @@
+# Example 2: Find all features that are within a transient bounding
+# box geometry, where spatial calculations are based on
+# `my:hasPointGeometry'.
+
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix my: <http://example.org/ApplicationSchema#>
+select ?f {
+  ?f my:hasPointGeometry ?fGeom .
+  ?fGeom geo:asWKT ?fWKT .
+  filter(geof:sfWithin(?fWKT,"POLYGON((-83.4 34.0, -83.1 34.0, -83.1 34.2, -83.4 34.2, -83.4 34.0))"^^geo:wktLiteral))
+}

@@ -1,0 +1,13 @@
+# Example 1: Find all features that feature `my:A' contains, where
+# spatial calculations are based on `my:hasExactGeometry'.
+
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix my: <http://example.org/ApplicationSchema#>
+select ?f {
+  my:A my:hasExactGeometry ?aGeom .
+  ?aGeom geo:asWKT ?aWKT .
+  ?f my:hasExactGeometry ?fGeom .
+  ?fGeom geo:asWKT ?fWKT .
+  filter(geof:sfContains(?aWKT, ?fWKT) && !sameTerm(?aGeom, ?fGeom))
+}
