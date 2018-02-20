@@ -1,0 +1,2 @@
+#+TITLE: Pro-GeoSPARQL: Prolog-based GeoSPARQL implementation
+#+AUTHOR: Wouter Beek
