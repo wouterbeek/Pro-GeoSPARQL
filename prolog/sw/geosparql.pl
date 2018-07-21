@@ -30,7 +30,7 @@
 */
 
 :- use_module(library(gis/gis)).
-:- use_module(library(sw/rdf_term)).
+:- use_module(library(semweb/rdf_term)).
 
 :- meta_predicate
     geof_bool(2, +, +).
