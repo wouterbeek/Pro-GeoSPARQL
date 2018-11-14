@@ -58,47 +58,47 @@
 
 
 'http://www.opengis.net/def/function/geosparql/boundary'(Wkt, Boundary) :-
-  rdf_literal(geo:wktLiteral, _, Lex1, Wkt),
+  rdf_typed_literal(geo:wktLiteral, Lex1, Wkt),
   gis_boundary(Lex1, Lex2),
-  rdf_literal(geo:wktLiteral, _, Lex2, Boundary).
+  rdf_typed_literal(geo:wktLiteral, Lex2, Boundary).
 
 
 
 'http://www.opengis.net/def/function/geosparql/convexHull'(Wkt, ConvexHull) :-
-  rdf_literal(geo:wktLiteral, _, Lex1, Wkt),
+  rdf_typed_literal(geo:wktLiteral, Lex1, Wkt),
   gis_convex_hull(Lex1, Lex2),
-  rdf_literal(geo:wktLiteral, _, Lex2, ConvexHull).
+  rdf_typed_literal(geo:wktLiteral, Lex2, ConvexHull).
 
 
 
 'http://www.opengis.net/def/function/geosparql/difference'(Wkt1, Wkt2, Difference) :-
-  rdf_literal(geo:wktLiteral, _, Lex1, Wkt1),
-  rdf_literal(geo:wktLiteral, _, Lex2, Wkt2),
+  rdf_typed_literal(geo:wktLiteral, Lex1, Wkt1),
+  rdf_typed_literal(geo:wktLiteral, Lex2, Wkt2),
   gis_difference(Lex1, Lex2, Lex3),
-  rdf_literal(xsd:double, _, Lex3, Difference).
+  rdf_typed_literal(xsd:double, Lex3, Difference).
 
 
 
 'http://www.opengis.net/def/function/geosparql/distance'(Wkt1, Wkt2, Distance) :-
-  rdf_literal(geo:wktLiteral, _, Lex1, Wkt1),
-  rdf_literal(geo:wktLiteral, _, Lex2, Wkt2),
+  rdf_typed_literal(geo:wktLiteral, Lex1, Wkt1),
+  rdf_typed_literal(geo:wktLiteral, Lex2, Wkt2),
   gis_distance(Lex1, Lex2, Lex3),
-  rdf_literal(xsd:double, _, Lex3, Distance).
+  rdf_typed_literal(xsd:double, Lex3, Distance).
 
 
 
 'http://www.opengis.net/def/function/geosparql/envelope'(Wkt, Envelope) :-
-  rdf_literal(geo:wktLiteral, _, Lex1, Wkt),
+  rdf_typed_literal(geo:wktLiteral, Lex1, Wkt),
   gis_envelope(Lex1, Lex2),
-  rdf_literal(geo:wktLiteral, _, Lex2, Envelope).
+  rdf_typed_literal(geo:wktLiteral, Lex2, Envelope).
 
 
 
 'http://www.opengis.net/def/function/geosparql/intersection'(Wkt1, Wkt2, Intersection) :-
-  rdf_literal(geo:wktLiteral, _, Lex1, Wkt1),
-  rdf_literal(geo:wktLiteral, _, Lex2, Wkt2),
+  rdf_typed_literal(geo:wktLiteral, Lex1, Wkt1),
+  rdf_typed_literal(geo:wktLiteral, Lex2, Wkt2),
   gis_intersection(Lex1, Lex2, Lex3),
-  rdf_literal(geo:wktLiteral, _, Lex3, Intersection).
+  rdf_typed_literal(geo:wktLiteral, Lex3, Intersection).
 
 
 
@@ -144,18 +144,18 @@
 
 
 'http://www.opengis.net/def/function/geosparql/symDifference'(Wkt1, Wkt2, Difference) :-
-  rdf_literal(geo:wktLiteral, _, Lex1, Wkt1),
-  rdf_literal(geo:wktLiteral, _, Lex2, Wkt2),
+  rdf_typed_literal(geo:wktLiteral, Lex1, Wkt1),
+  rdf_typed_literal(geo:wktLiteral, Lex2, Wkt2),
   gis_symmetric_difference(Lex1, Lex2, Lex3),
-  rdf_literal(xsd:double, _, Lex3, Difference).
+  rdf_typed_literal(xsd:double, Lex3, Difference).
 
 
 
 'http://www.opengis.net/def/function/geosparql/union'(Wkt1, Wkt2, Union) :-
-  rdf_literal(geo:wktLiteral, _, Lex1, Wkt1),
-  rdf_literal(geo:wktLiteral, _, Lex2, Wkt2),
+  rdf_typed_literal(geo:wktLiteral, Lex1, Wkt1),
+  rdf_typed_literal(geo:wktLiteral, Lex2, Wkt2),
   gis_intersection(Lex1, Lex2, Lex3),
-  rdf_literal(geo:wktLiteral, _, Lex3, Union).
+  rdf_typed_literal(geo:wktLiteral, Lex3, Union).
 
 
 
@@ -166,6 +166,6 @@
 %! geof_bool(:Goal_2, +Wkt1:rdf_literal, +Wkt2:rdf_literal) is semidet.
 
 geof_bool(Goal_2, Wkt1, Wkt2) :-
-  rdf_literal(geo:wktLiteral, _, Lex1, Wkt1),
-  rdf_literal(geo:wktLiteral, _, Lex2, Wkt2),
+  rdf_typed_literal(geo:wktLiteral, Lex1, Wkt1),
+  rdf_typed_literal(geo:wktLiteral, Lex2, Wkt2),
   call(Goal_2, Lex1, Lex2).
